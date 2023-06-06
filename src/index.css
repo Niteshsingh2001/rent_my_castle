@@ -1,13 +1,144 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  user-select: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  overflow-x: hidden;
+
+  /* Hide scrollbars */
+}
+
+.logo {
+  font-family: 'Rancho', cursive;
+}
+
+input {
+  @apply bg-teal-50 h-10 m-1 rounded-lg px-2 outline-none
+}
+
+.link {
+  @apply text-teal-600
+}
+
+.btn {
+  @apply bg-teal-600 rounded-lg
+}
+
+.btn-primary {
+  @apply btn text-white
+}
+
+.btn-outline {
+  @apply rounded-lg text-teal-600 border-2 border-teal-600
+}
+
+/* .btn_type1 {
+  @apply bg-teal-600 rounded-lg px-10 py-3 text-white
+}
+
+.btn_type2 {
+  @apply text-teal-600 rounded-lg px-10 py-3
+}
+
+.btn_type3 {
+  @apply text-teal-600 rounded-lg px-10 py-3 border-2 border-teal-600
+} */
+
+.auth_bg {
+  background-image: url(assets/images/auth_image.jpg);
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-image {
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.image {
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+textarea {
+  @apply bg-teal-50 m-1 rounded-lg px-2 outline-none;
+  resize: none;
+}
+
+input[type="checkbox"] {
+  @apply h-5 w-5;
+
+}
+
+.card-height {
+  height: 95%;
+}
+
+select {
+  appearance: none;
+  outline: none;
+  @apply bg-teal-50 m-1 rounded-lg px-2 w-full;
+}
+
+option {
+  appearance: none;
+  @apply bg-teal-50 m-1 rounded-lg px-2 outline-none border-none;
+}
+
+option:checked {
+  @apply text-teal-600 m-1 rounded-lg px-2;
+}
+
+/* Loader */
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #0d9488;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #0d9488 transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

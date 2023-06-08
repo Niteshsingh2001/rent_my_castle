@@ -12,11 +12,9 @@ const Carousel = (data) => {
     let images = data["images"]
 
     const handeleLeft = () => {
-        console.log(index, "left")
         index <= 0 ? setIndex(images.length - 1) : setIndex(index - 1)
     }
     const handleRight = () => {
-        console.log(index, "Right")
         index >= images.length - 1 ? setIndex(0) : setIndex(index + 1)
     }
     return (

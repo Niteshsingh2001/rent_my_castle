@@ -8,6 +8,8 @@ export default function Signin({ className }) {
 
 
     const [alert, setAlert] = useState(null);
+    const [load, setLoad] = useState(null);
+
 
     const showAlert = (msg) => {
         setAlert(msg)
@@ -22,6 +24,7 @@ export default function Signin({ className }) {
 
 
     const handleSubmit = (event) => {
+        setLoad(true);
         event.preventDefault();
         const formData = {};
 
@@ -32,9 +35,8 @@ export default function Signin({ className }) {
         const promise = account.createEmailSession(formData.email, formData.password);
         promise.then(function (response) {
             setSession(response.$id)
-            setValid(false)
         }, function (error) {
-            console.log(error)
+            setLoad(null)
             setValid(true)
         });
         if (valid === true) {
@@ -73,7 +75,7 @@ export default function Signin({ className }) {
                                 <a className="" href="/forget">Forgot Password?</a>
                             </div>
                             <div className="flex mt-2">
-                                <button className="btn-primary h-10 uppercase w-full" type='submit'>Sign in</button>
+                                <button className="btn-primary h-10 uppercase w-full" type='submit'>{load ? "Signing In..." : "Sign In"}</button>
                             </div>
                             <div className="flex pr-4 mt-4 justify-center flex-col items-center">
                                 <h3>Don't have an account</h3>

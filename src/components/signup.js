@@ -1,14 +1,14 @@
 import Logo from './logo'
 import { Link, useHistory } from 'react-router-dom';
-import { ID, AppwriteException } from "appwrite";
+import { ID, } from "appwrite";
 import { account, client } from "../pages/database";
 import React, { useState } from 'react';
 import MsgBox from "../components/msgbox";
 
-const except = new AppwriteException()
 export default function Signup({ className }) {
 
     const [alert, setAlert] = useState(null);
+    const [load, setLoad] = useState(null);
 
     const showAlert = (msg) => {
         setAlert(msg)
@@ -16,30 +16,30 @@ export default function Signup({ className }) {
             setAlert(null);
         }, 3000)
     }
-
     const [valid, setValid] = useState(false)
 
     const history = useHistory();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
+        setLoad(true)
         const formData = {};
 
         [...event.target].forEach((item, index) => {
             formData[item.name] = item.value
         })
 
-        const promise = account.create(ID.unique(), formData.userName, formData.email, formData.password);
+        delete formData[""]
+
+        const promise = account.create(ID.unique(), formData.email, formData.password, formData.username);
 
         promise.then(function (response) {
-            console.log("PASS")
             history.push('/auth/login');
         }, function (error) {
-            
+            setLoad(null)
+            setValid(true)
+
         })
-
-
 
         if (valid === true) {
             showAlert("Invalid email: Value must be a valid email address")
@@ -63,7 +63,7 @@ export default function Signup({ className }) {
                         <div className='mt-5'>
                             <div className="flex flex-col">
 
-                                <input className='mt-2' required name='userName' type="text" placeholder="Name"></input>
+                                <input className='mt-2' required name='username' type="text" placeholder="Name"></input>
                                 <input className='mt-2' required name='email' type="email" placeholder="Email Address"></input>
                                 <input className='mt-2' required name='password' type="password" maxLength={10} placeholder="Password"></input>
 
@@ -72,7 +72,7 @@ export default function Signup({ className }) {
                                 <p>Forgot Password?</p>
                             </div>
                             <div className="flex mt-2">
-                                <button type='submit' className="btn-primary h-10 uppercase w-full">Sign Up</button>
+                                <button type='submit' className="btn-primary h-10 uppercase w-full">{load ? "Signing Up..." : "Sign Up"}</button>
                             </div>
                         </div>
                     </form>

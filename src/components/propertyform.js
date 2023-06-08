@@ -46,15 +46,13 @@ const states = [
 ];
 
 const PropertyForm = ({ user, name }) => {
-    console.log(user)
     const [images, setImages] = useState([]);
     const [formData, setformData] = useState([]);
     const [imgPath, setimgPath] = useState([]);
     const [load, setLoad] = useState(false)
 
     const location = useHistory()
-
-
+    
     const handleImageUpload = async (event) => {
         const files = Array.from(event.target.files)
         setimgPath(Array.from(event.target.files))
@@ -89,7 +87,7 @@ const PropertyForm = ({ user, name }) => {
                     <ArrowUpOnSquareIcon className='text-teal-600 h-15 w-15' />
                     <p className='mb-2'>Upload Image</p>
                 </label>
-                <input id='uploadImages' name='images' className='hidden' type="file" multiple accept="image/png, image/gif, image/jpeg" onChange={handleImageUpload} />
+                <input id='uploadImages' name='images' className='hidden' type="file" multiple accept="image/png, image/gif, image/jpeg,image/webp" onChange={handleImageUpload} />
 
                 <div className="flex items-center justify-center align-middle ">
                     {images.map((image, index) => (
@@ -205,7 +203,7 @@ const PropertyForm = ({ user, name }) => {
                         </button> */}
 
                     <button type='submit' className='btn-primary h-10 px-5 mt-2 ml-2'>
-                        {load ? "Wait" : "Add Property"}
+                        {load ? "Adding... " : "Add Property"}
                     </button>
 
                 </div>

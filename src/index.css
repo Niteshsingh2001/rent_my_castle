@@ -1,52 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Rancho&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
 * {
+  box-sizing: border-box;
   user-select: none;
 }
-
-body {
-  overflow-x: hidden;
-
-  /* Hide scrollbars */
-}
-
-.logo {
-  font-family: 'Rancho', cursive;
-}
-
-input {
-  @apply bg-teal-50 h-10 m-1 rounded-lg px-2 outline-none
-}
-
-.link {
-  @apply text-teal-600
-}
-
-.btn {
-  @apply bg-teal-600 rounded-lg
-}
-
-.btn-primary {
-  @apply btn text-white
-}
-
-.btn-outline {
-  @apply rounded-lg text-teal-600 border-2 border-teal-600
-}
-
-/* .btn_type1 {
-  @apply bg-teal-600 rounded-lg px-10 py-3 text-white
-}
-
-.btn_type2 {
-  @apply text-teal-600 rounded-lg px-10 py-3
-}
-
-.btn_type3 {
-  @apply text-teal-600 rounded-lg px-10 py-3 border-2 border-teal-600
-} */
 
 .auth_bg {
   background-image: url(assets/images/auth_image.jpg);
@@ -56,21 +16,8 @@ input {
   background-size: cover;
 }
 
-.card-image {
-  background-position-x: center;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
 
-.image {
-  background-position-x: center;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-textarea {
+/* textarea {
   @apply bg-teal-50 m-1 rounded-lg px-2 outline-none;
   resize: none;
 }
@@ -97,7 +44,7 @@ option {
 
 option:checked {
   @apply text-teal-600 m-1 rounded-lg px-2;
-}
+} */
 
 /* Loader */
 .lds-ring {

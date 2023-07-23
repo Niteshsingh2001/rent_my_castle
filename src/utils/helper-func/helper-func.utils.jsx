@@ -1,4 +1,10 @@
-export default function TruncatedText(text, wordCount) {
+
+
+export const changeRoute = (path, navigate) => {
+    navigate(path)
+}
+
+export function truncatedText(text, wordCount) {
     if (!text) {
         return '';
     }

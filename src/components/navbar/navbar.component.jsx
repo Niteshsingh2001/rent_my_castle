@@ -7,6 +7,8 @@ import Profile from "../profile/profile.component";
 import { useContext } from "react";
 import { UserContext } from "../../context/user.context";
 import { Outlet } from 'react-router-dom'
+import { AlertBoxContext } from "../../context/alertbox.context";
+import { ALERT_TYPE_CLASS } from "../alertbox/alertbox.component";
 
 export default function Navbar() {
 
@@ -26,14 +28,14 @@ export default function Navbar() {
 
                     {!currentUser ?
                         <div className="space-x-2">
-                            <Button className="uppercase" onClick={() => { changeRoute("/auth/signin", navigate) }}>Sign In</Button>
+                            <Button className="uppercase" onClick={() => { changeRoute("/auth/signin", navigate); }}>Sign In</Button>
                             <Button buttonType={BUTTON_TYPE_CLASS.inverted} className="uppercase" onClick={() => { changeRoute("/auth/signup", navigate) }}>Sign Up</Button>
                         </div>
                         :
                         <Profile id={currentUser.userId} />
                     }
                 </div>
-            </div>
+            </div >
             <Outlet />
         </>
     )

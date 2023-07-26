@@ -6,15 +6,18 @@ import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { UserContextProvider } from './context/user.context';
 import { PropertiesContextProvider } from './context/properties.context';
+import { AlertBoxContextProvider } from './context/alertbox.context';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      <UserContextProvider>
-        <PropertiesContextProvider>
-          <App />
-        </PropertiesContextProvider>
-      </UserContextProvider>
+      <AlertBoxContextProvider>
+        <UserContextProvider>
+          <PropertiesContextProvider>
+            <App />
+          </PropertiesContextProvider>
+        </UserContextProvider>
+      </AlertBoxContextProvider>
     </React.StrictMode>
   </BrowserRouter>
 );

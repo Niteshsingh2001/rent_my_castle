@@ -22,3 +22,7 @@ export const loginUser = async (email, password) => {
 export const getDocuments = async () => {
     return await databases.listDocuments(process.env.REACT_APP_DATABASE_ID, process.env.REACT_APP_COLLECTION_ID)
 }
+
+export const getDoc = async (documentID) => {
+    return await databases.getDocument(process.env.REACT_APP_DATABASE_ID, process.env.REACT_APP_COLLECTION_ID, documentID);
+}

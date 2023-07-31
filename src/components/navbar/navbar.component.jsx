@@ -7,14 +7,13 @@ import Profile from "../profile/profile.component";
 import { useContext } from "react";
 import { UserContext } from "../../context/user.context";
 import { Outlet } from 'react-router-dom'
-import { AlertBoxContext } from "../../context/alertbox.context";
-import { ALERT_TYPE_CLASS } from "../alertbox/alertbox.component";
+
 
 export default function Navbar() {
 
     const navigate = useNavigate()
 
-    const { currentUser, setCurrentUser } = useContext(UserContext)
+    const { currentUser } = useContext(UserContext)
 
 
     return (
@@ -35,7 +34,7 @@ export default function Navbar() {
                         <Profile id={currentUser.userId} />
                     }
                 </div>
-            </div >
+            </div>
             <Outlet />
         </>
     )

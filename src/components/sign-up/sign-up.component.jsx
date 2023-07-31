@@ -7,6 +7,8 @@ import { changeRoute } from "../../utils/helper-func/helper-func.utils";
 import { useNavigate } from 'react-router-dom';
 import { createUser, loginUser } from "../../utils/appwrite/appwrite.utils";
 import { UserContext } from "../../context/user.context";
+import { AlertBoxContext } from "../../context/alertbox.context";
+import { ALERT_TYPE_CLASS } from "../../context/alertbox.context";
 
 
 const defaultFormValue = {
@@ -24,6 +26,7 @@ export default function SignUp() {
     const { setCurrentUser } = useContext(UserContext)
 
     const navigate = useNavigate()
+    const { setMessage, setType } = useContext(AlertBoxContext)
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -46,13 +49,14 @@ export default function SignUp() {
                 setCurrentUser(user)
                 changeRoute("/", navigate)
             } catch (error) {
-                console.log('user sign in failed', error);
-                console.log('Error Code : ', error.code);
-                console.log('Error Code : ', error.message);
+                setType(ALERT_TYPE_CLASS.error)
+                setMessage(`${error.code} ${error.message}`)
+
             }
         }
         else {
-            console.log(" password not matched")
+            setType(ALERT_TYPE_CLASS.error)
+            setMessage("Password didn't Match")
         }
 
     };

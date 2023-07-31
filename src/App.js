@@ -6,8 +6,7 @@ import Home from "./routes/home/home.component";
 import AlertBox from "./components/alertbox/alertbox.component";
 import { useContext } from "react";
 import { AlertBoxContext } from "./context/alertbox.context";
-import { useEffect } from "react";
-
+import Post from "./routes/post/post.component";
 
 function App() {
   const { message, type } = useContext(AlertBoxContext)
@@ -17,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navbar />}>
           <Route index element={<Home />} />
+          <Route path="post/:docID" element={<Post />} />
         </Route>
         <Route path="auth/*" element={<Authentication />} />
       </Routes>

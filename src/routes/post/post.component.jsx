@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { getDoc } from '../../utils/appwrite/appwrite.utils'
 import { ALERT_TYPE_CLASS, AlertBoxContext } from '../../context/alertbox.context'
 import PostContent from '../../components/post-content/post-content.component'
+import Loader from '../../components/loader/loader.component'
 
 export default function Post() {
 
@@ -28,10 +29,13 @@ export default function Post() {
 
     return (
         <div>
-            {postData && <section className="">
-                <Carousel images={postData.images} />
-                <PostContent content={postData} />
-            </section>}
+            {postData ?
+                <section className="">
+                    <Carousel images={postData.images} />
+                    <PostContent content={postData} />
+                </section>
+                : <Loader />
+            }
 
         </div>
     )

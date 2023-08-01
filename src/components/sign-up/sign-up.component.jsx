@@ -41,16 +41,25 @@ export default function SignUp() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+
         if (confirmPassword == password) {
-            try {
-                await createUser(email, confirmPassword, name)
-                const user = await loginUser(email, confirmPassword);
-                resetFormFields();
-                setCurrentUser(user)
-                changeRoute("/", navigate)
-            } catch (error) {
-                setType(ALERT_TYPE_CLASS.error)
-                setMessage(`${error.code} ${error.message}`)
+
+            if (password.length && confirmPassword.length <= 8) {
+                setType(ALERT_TYPE_CLASS.warning)
+                setMessage("Password must greater than 8 ")
+            }
+            else {
+                try {
+                    await createUser(email, confirmPassword, name)
+                    const user = await loginUser(email, confirmPassword);
+                    resetFormFields();
+                    setCurrentUser(user)
+                    changeRoute("/", navigate)
+                } catch (error) {
+                    setType(ALERT_TYPE_CLASS.error)
+                    setMessage(`${error.code} ${error.message}`)
+
+                }
 
             }
         }

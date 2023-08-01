@@ -10,7 +10,7 @@ export default function PostContent({ content }) {
                 <h2 className="text-2xl font-semibold capitalize">{title}</h2>
                 <p className="text-teal-600 xsm:text-2xl text-lg font-semibold ml-4">₹ {price}/Month {negotiable == null ? "" : negotiable}</p>
             </div>
-            <p className="text-gray-600 text-lg">
+            <p className="text-gray-600 text-lg ">
                 {description}
             </p>
             <div className="mt-2 flex justify-between items-center">

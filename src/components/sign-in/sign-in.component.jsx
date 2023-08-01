@@ -8,6 +8,7 @@ import { useState } from "react";
 import { loginUser } from "../../utils/appwrite/appwrite.utils";
 import { useContext } from "react";
 import { UserContext } from "../../context/user.context";
+import { ALERT_TYPE_CLASS, AlertBoxContext } from "../../context/alertbox.context";
 
 const defaultFormValue = {
     email: '',
@@ -21,12 +22,13 @@ export default function SignIn({ className }) {
     const navigate = useNavigate()
 
     const { setCurrentUser } = useContext(UserContext)
+    const { setMessage, setType } = useContext(AlertBoxContext)
 
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     };
-
+    
     const resetFormFields = () => {
         setFormData(defaultFormValue);
     };
@@ -35,16 +37,16 @@ export default function SignIn({ className }) {
         event.preventDefault();
         try {
             const user = await loginUser(email, password);
-            resetFormFields();
+            // localStorage.setItem("sessionId", user.$id)
             setCurrentUser(user)
+            resetFormFields();
             changeRoute("/", navigate)
         } catch (error) {
-            console.log('user sign in failed', error);
-            console.log('Error Code : ', error.code);
-            console.log('Error Code : ', error.message);
+            setType(ALERT_TYPE_CLASS.error)
+            setMessage(`${error.code} ${error.message}`)
         }
     };
-    
+
 
     return (
         <div className="px-4 sm:w-1/2 w-full" >

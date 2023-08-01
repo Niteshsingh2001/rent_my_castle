@@ -26,3 +26,6 @@ export const getDocuments = async () => {
 export const getDoc = async (documentID) => {
     return await databases.getDocument(process.env.REACT_APP_DATABASE_ID, process.env.REACT_APP_COLLECTION_ID, documentID);
 }
+export const logoutUser = async (sessionId) => {
+    return await account.deleteSession(sessionId);
+}
